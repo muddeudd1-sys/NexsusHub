@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS - Ultimate Community Gaming Hub</title>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: #0b0c10;
+      --card-bg: #1f2833;
+      --accent: #66fcf1;
+      --accent-hover: #45a29e;
+      --highlight: #ff4655;
+      --text-main: #c5c6c7;
+      --text-bright: #ffffff;
+      --border-color: #2c3531;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Top Announcement Bar */
+    .top-bar {
+      background: var(--highlight);
+      color: #fff;
+      text-align: center;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: #11141a;
+      border-bottom: 2px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1350px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--text-bright);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--card-bg);
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .user-profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card-bg);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .auth-btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .auth-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Main Container */
+    .main-layout {
+      max-width: 1350px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    @media (max-width: 992px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .nav-link {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Views Framework */
+    .view-content {
+      display: none;
+    }
+    .view-content.active-view {
+      display: block;
+    }
+
+    /* Section Header */
+    .section-title {
+      font-size: 1.5rem;
+      color: var(--text-bright);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-left: 5px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-main);
+    }
+
+    .filter-btn {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.75rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background-color: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .card-img-container {
+      position: relative;
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      border-radius: 4px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .badge-patch { background-color: #2563eb; color: #fff; }
+    .badge-release { background-color: #16a34a; color: #fff; }
+    .badge-event { background-color: #9333ea; color: #fff; }
+
+    .card-content {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      color: var(--text-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .action-btn:hover, .action-btn.liked {
+      color: var(--highlight);
+    }
+
+    .read-more-btn {
+      background-color: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .read-more-btn:hover {
+      background-color: var(--accent);
+      color: #000;
+    }
+
+    /* Sidebar Widgets */
+    .sidebar-widget {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.2rem;
+      border: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .widget-title {
+      font-size: 1.1rem;
+      color: var(--text-bright);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .community-list {
+      list-style: none;
+    }
+
+    .community-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .community-item:last-child {
+      border-bottom: none;
+    }
+
+    .community-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .community-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .join-btn {
+      background-color: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .join-btn.joined {
+      background-color: var(--accent);
+      color: #000;
+    }
+
+    /* Community Chat Widget */
+    .chat-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 5px;
+      margin-bottom: 10px;
+    }
+
+    .chat-message {
+      background: #11141a;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .chat-user {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 2px;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chat-time {
+      color: #666;
+      font-weight: normal;
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 8px;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 8px 12px;
+      background: #11141a;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: #fff;
+      outline: none;
+    }
+
+    .chat-input-area button {
+      background: var(--accent);
+      border: none;
+      color: #000;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Community Feed Tab Extra Styles */
+    .feed-create-post {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feed-create-post textarea {
+      width: 100%;
+      height: 80px;
+      background: #11141a;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: #fff;
+      padding: 10px;
+      resize: none;
+      margin-bottom: 10px;
+      outline: none;
+    }
+
+    .post-btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      float: right;
+    }
+
+    /* Modals Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      max-width: 600px;
+      width: 90%;
+      padding: 1.5rem;
+      position: relative;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 1.4rem;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.85rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      background: #11141a;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: #fff;
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #07080a;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <i class="fa-solid fa-fire"></i> LIVE: Tekken 8 Patch v1.05 & GTA VI Official Schedule Updated!
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="logo" onclick="switchTab('home')">
+        <i class="fa-solid fa-gamepad"></i> NEXUS<span>HUB</span>
+      </div>
+      <ul class="nav-links">
+        <li><a class="nav-link active" onclick="switchTab('home')" id="nav-home"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a class="nav-link" onclick="switchTab('patches')" id="nav-patches"><i class="fa-solid fa-wrench"></i> Patches</a></li>
+        <li><a class="nav-link" onclick="switchTab('releases')" id="nav-releases"><i class="fa-solid fa-rocket"></i> Releases</a></li>
+        <li><a class="nav-link" onclick="switchTab('community')" id="nav-community"><i class="fa-solid fa-comments"></i> Community Feed</a></li>
+      </ul>
+      <div id="authContainer">
+        <button class="auth-btn" onclick="openAuthModal()"><i class="fa-solid fa-right-to-bracket"></i> Login / Signup</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="main-layout">
+    
+    <!-- Left Dynamic Main Content Area -->
+    <main>
+      
+      <!-- VIEW 1: HOME HUB VIEW -->
+      <div id="view-home" class="view-content active-view">
+        <div class="section-title">
+          <i class="fa-solid fa-newspaper"></i> Live Active Gaming Hub
+        </div>
+
+        <!-- Controls: Search & Category Filters -->
+        <div class="controls-bar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search active games, patches, releases...">
+          </div>
+          <button class="filter-btn active" onclick="filterCategory('all', this)">All Feeds</button>
+          <button class="filter-btn" onclick="filterCategory('patch', this)">Patch Notes</button>
+          <button class="filter-btn" onclick="filterCategory('release', this)">Releases</button>
+          <button class="filter-btn" onclick="filterCategory('event', this)">Tournaments</button>
+        </div>
+
+        <div class="cards-grid" id="mainCardsGrid"></div>
+      </div>
+
+      <!-- VIEW 2: PATCHES VIEW -->
+      <div id="view-patches" class="view-content">
+        <div class="section-title">
+          <i class="fa-solid fa-wrench"></i> Game Patch Notes & Balance Updates
+        </div>
+        <p style="margin-bottom: 1.5rem;">Official updates, character balances, bug fixes, and maintenance logs for active multiplayer games.</p>
+        <div class="cards-grid" id="patchesCardsGrid"></div>
+      </div>
+
+      <!-- VIEW 3: RELEASES VIEW -->
+      <div id="view-releases" class="view-content">
+        <div class="section-title">
+          <i class="fa-solid fa-rocket"></i> Upcoming Games & Release Radar
+        </div>
+        <p style="margin-bottom: 1.5rem;">Keep track of launch dates, beta access tests, and trailers for major upcoming games.</p>
+        <div class="cards-grid" id="releasesCardsGrid"></div>
+      </div>
+
+      <!-- VIEW 4: COMMUNITY FEED VIEW -->
+      <div id="view-community" class="view-content">
+        <div class="section-title">
+          <i class="fa-solid fa-users"></i> Global Community Discussion Feed
+        </div>
+        
+        <!-- Create Post Widget -->
+        <div class="feed-create-post">
+          <textarea id="communityPostInput" placeholder="Share patch feedback, match highlights, or ask the community..."></textarea>
+          <button class="post-btn" onclick="publishCommunityPost()"><i class="fa-solid fa-paper-plane"></i> Publish Post</button>
+          <div style="clear: both;"></div>
+        </div>
+
+        <div id="communityPostsContainer"></div>
+      </div>
+
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside>
+      
+      <!-- Top Active Communities -->
+      <div class="sidebar-widget">
+        <h3 class="widget-title"><i class="fa-solid fa-shield-halved"></i> Active Game Hubs</h3>
+        <ul class="community-list" id="communityList"></ul>
+      </div>
+
+      <!-- Live Global Chat Box -->
+      <div class="sidebar-widget">
+        <h3 class="widget-title"><i class="fa-solid fa-comments"></i> Live Community Chat</h3>
+        <div class="chat-box" id="sidebarChatBox"></div>
+        <div class="chat-input-area">
+          <input type="text" id="sidebarChatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendSidebarChat()">
+          <button onclick="sendSidebarChat()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- Detail Modal Popup -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle" style="color:var(--text-bright); margin-bottom: 10px;"></h2>
+      <div id="modalBadge" style="margin-bottom: 15px;"></div>
+      <img id="modalImage" src="" style="width:100%; height:220px; object-fit:cover; border-radius:8px; margin-bottom:15px;" alt="Detail Image">
+      <div id="modalBody" style="line-height:1.7; font-size:0.95rem; margin-bottom:20px;"></div>
+      <hr style="border-color:var(--border-color); margin-bottom:15px;">
+      <h3 style="color:var(--text-bright); margin-bottom: 10px; font-size:1.1rem;">Discussion & Comments</h3>
+      <div id="modalComments" style="margin-bottom:15px; max-height:150px; overflow-y:auto;"></div>
+      <div class="chat-input-area">
+        <input type="text" id="modalCommentInput" placeholder="Write a comment...">
+        <button onclick="addModalComment()">Comment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-content" style="max-width: 450px;">
+      <span class="modal-close" onclick="closeAuthModal()">&times;</span>
+      <h2 style="color:#fff; margin-bottom:15px;" id="authModalTitle">Gamer Account Access</h2>
+      <div class="form-group" id="usernameGroup" style="display:none;">
+        <label>GamerTag / Username</label>
+        <input type="text" id="authUsername" placeholder="e.g. Gamer1720">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="authEmail" placeholder="gamer@nexus.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="authPassword" placeholder="••••••••">
+      </div>
+      <button class="auth-btn" style="width:100%; padding:10px; margin-top:10px;" id="authSubmitBtn" onclick="handleAuth()">Login</button>
+      <p style="text-align:center; margin-top:15px; font-size:0.85rem; cursor:pointer;" onclick="toggleAuthMode()" id="authToggleText">Need an account? Sign Up</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 NEXUS Gaming Community. Firebase Cloud Powered Service.</p>
+  </footer>
+
+  <!-- Firebase Integration Script Module -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    // FIREBASE CONFIGURATION
+    const firebaseConfig = {
+      apiKey: "AIzaSyAlUi6R5YKWvnatA6XRnEFo-0V6RxH8UnI",
+      authDomain: "nexushub-e9397.firebaseapp.com",
+      databaseURL: "https://nexushub-e9397-default-rtdb.firebaseio.com",
+      projectId: "nexushub-e9397",
+      storageBucket: "nexushub-e9397.firebasestorage.app",
+      messagingSenderId: "195336282623",
+      appId: "1:195336282623:web:17991c600f2d81df9947ca",
+      measurementId: "G-H76GX6K8H8"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    let currentUser = null;
+    let isSignUp = false;
+
+    const appData = {
+      items: [
+        {
+          id: 1,
+          category: 'patch',
+          title: 'Tekken 8 Balance Patch v1.05',
+          desc: 'Major adjustments for high-tier characters, matchmaking stabilization, and hitboxes fixes for Lars & Dragunov.',
+          fullDetails: 'Tekken 8 Patch 1.05 brings critical changes! Throw tracking has been tuned down by 15%, heat dash wall splats are adjusted for balanced damage output, and rollback netcode performance has been improved for cross-play servers.',
+          img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600',
+          time: '2 hours ago',
+          likes: 142,
+          isLiked: false,
+          comments: ['Great patch for Dragunov mains!', 'Matchmaking feels smoother now.']
+        },
+        {
+          id: 2,
+          category: 'release',
+          title: 'GTA VI Official Launch Schedule',
+          desc: 'Rockstar Games updates official release windows alongside brand new map screenshots and vice city breakdown.',
+          fullDetails: 'The next evolution of open-world gaming arrives with dual protagonists in Vice City. Advanced AI traffic, real-time weather physics, and fully interactive interiors promise an unparalleled gaming environment.',
+          img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600',
+          time: '5 hours ago',
+          likes: 890,
+          isLiked: false,
+          comments: ['Can not wait for this masterclass!', 'Graphics look unbelievable.']
+        },
+        {
+          id: 3,
+          category: 'event',
+          title: 'EVO Fighting Championship 2026',
+          desc: 'Global tournament registration opens featuring Tekken 8, Street Fighter 6, and King of Fighters XV.',
+          fullDetails: 'EVO 2026 is set to break attendance records! Featuring a massive $100k prize pool, world-class commentary teams, and community open brackets for all major fighting franchises.',
+          img: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600',
+          time: '1 day ago',
+          likes: 310,
+          isLiked: false,
+          comments: ['Signed up for Tekken 8 bracket!']
+        },
+        {
+          id: 4,
+          category: 'patch',
+          title: 'Valorant Episode 9 Act 2 Update',
+          desc: 'Duellist nerfs, new map rotations, and anti-cheat kernel updates deployed.',
+          fullDetails: 'Riot Games has deployed anti-cheat updates to suppress hardware spoofers, alongside balance tweaks for Jett mobility and Lotus map choke points.',
+          img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600',
+          time: '2 days ago',
+          likes: 520,
+          isLiked: false,
+          comments: ['Ranked matchmaking feels much fairer.']
+        }
+      ],
+      hubs: [
+        { id: 1, name: 'Tekken Arena', members: '14.2k Active', joined: false },
+        { id: 2, name: 'Resident Evil Hub', members: '8.5k Active', joined: true },
+        { id: 3, name: 'KOF Fighters League', members: '6.1k Active', joined: false }
+      ],
+      activeItemForModal: null
+    };
+
+    // Firebase Auth State Listener
+    onAuthStateChanged(auth, (user) => {
+      currentUser = user;
+      const authContainer = document.getElementById('authContainer');
+      if (user) {
+        authContainer.innerHTML = `
+          <div class="user-profile-badge">
+            <i class="fa-solid fa-user-ninja" style="color: var(--accent);"></i>
+            <span style="font-size: 0.88rem; font-weight: 700; color: #fff;">${user.displayName || 'Gamer'}</span>
+            <i class="fa-solid fa-right-from-bracket" style="cursor:pointer; margin-left:8px; color:#ff4655;" title="Logout" id="logoutBtn"></i>
+          </div>
+        `;
+        document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
+      } else {
+        authContainer.innerHTML = `<button class="auth-btn" onclick="openAuthModal()"><i class="fa-solid fa-right-to-bracket"></i> Login / Signup</button>`;
+      }
+    });
+
+    // Handle Authentication (Login / Signup)
+    window.handleAuth = async () => {
+      const email = document.getElementById('authEmail').value;
+      const password = document.getElementById('authPassword').value;
+      const username = document.getElementById('authUsername').value;
+
+      if (!email || !password) return alert("Please fill in Email and Password!");
+
+      try {
+        if (isSignUp) {
+          if (!username) return alert("Please enter a GamerTag!");
+          const res = await createUserWithEmailAndPassword(auth, email, password);
+          await updateProfile(res.user, { displayName: username });
+          alert("Account created successfully!");
+        } else {
+          await signInWithEmailAndPassword(auth, email, password);
+        }
+        window.closeAuthModal();
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+
+    // Realtime Database: Live Chat
+    window.sendSidebarChat = () => {
+      const input = document.getElementById('sidebarChatInput');
+      const val = input.value.trim();
+      if(!currentUser) return alert("Please Login to send messages!");
+      if(val !== '') {
+        const now = new Date();
+        const timeStr = `${now.getHours()}:${now.getMinutes()<10?'0':''}${now.getMinutes()}`;
+        push(ref(db, 'chats'), {
+          user: currentUser.displayName || 'Gamer',
+          text: val,
+          time: timeStr
+        });
+        input.value = '';
+      }
+    };
+
+    onValue(ref(db, 'chats'), (snapshot) => {
+      const box = document.getElementById('sidebarChatBox');
+      box.innerHTML = '';
+      snapshot.forEach((child) => {
+        const c = child.val();
+        const msg = document.createElement('div');
+        msg.className = 'chat-message';
+        msg.innerHTML = `
+          <div class="chat-user"><span>${c.user}</span> <span class="chat-time">${c.time}</span></div>
+          <div>${c.text}</div>
+        `;
+        box.appendChild(msg);
+      });
+      box.scrollTop = box.scrollHeight;
+    });
+
+    // Realtime Database: Community Feed Posts
+    window.publishCommunityPost = () => {
+      const textarea = document.getElementById('communityPostInput');
+      const val = textarea.value.trim();
+      if(!currentUser) return alert("Please Login to publish posts!");
+      if(val !== '') {
+        push(ref(db, 'posts'), {
+          user: currentUser.displayName || 'Gamer',
+          text: val,
+          likes: 0,
+          time: 'Just now'
+        });
+        textarea.value = '';
+      }
+    };
+
+    onValue(ref(db, 'posts'), (snapshot) => {
+      const container = document.getElementById('communityPostsContainer');
+      container.innerHTML = '';
+      let posts = [];
+      snapshot.forEach(c => posts.unshift(c.val()));
+      posts.forEach(post => {
+        const div = document.createElement('div');
+        div.className = 'sidebar-widget';
+        div.style.marginBottom = '1rem';
+        div.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-weight:bold; color:var(--accent);"><i class="fa-solid fa-user-circle"></i> ${post.user}</span>
+            <span style="font-size:0.8rem; color:#888;">${post.time}</span>
+          </div>
+          <p style="color:#fff; margin-bottom:12px;">${post.text}</p>
+          <button class="action-btn" onclick="this.querySelector('span').innerText = parseInt(this.querySelector('span').innerText) + 1">
+            <i class="fa-regular fa-thumbs-up"></i> <span>${post.likes || 0}</span> Likes
+          </button>
+        `;
+        container.appendChild(div);
+      });
+    });
+
+    // DOM & UI Event Handlers
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMainCards(appData.items);
+      renderPatchesCards();
+      renderReleasesCards();
+      renderHubs();
+    });
+
+    window.switchTab = (tabName) => {
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      document.querySelectorAll('.view-content').forEach(view => view.classList.remove('active-view'));
+
+      document.getElementById(`nav-${tabName}`).classList.add('active');
+      document.getElementById(`view-${tabName}`).classList.add('active-view');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    function renderMainCards(itemsToRender) {
+      const grid = document.getElementById('mainCardsGrid');
+      grid.innerHTML = '';
+
+      if(itemsToRender.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 2rem;">No items found matching your filter.</p>';
+        return;
+      }
+
+      itemsToRender.forEach(item => {
+        const badgeClass = item.category === 'patch' ? 'badge-patch' : (item.category === 'release' ? 'badge-release' : 'badge-event');
+        const badgeLabel = item.category === 'patch' ? 'Patch Update' : (item.category === 'release' ? 'Release Radar' : 'Tournament');
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-img-container">
+            <img src="${item.img}" class="card-img" alt="${item.title}">
+            <span class="card-badge ${badgeClass}">${badgeLabel}</span>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-desc">${item.desc}</p>
+            <div class="card-footer">
+              <button class="action-btn ${item.isLiked ? 'liked' : ''}" onclick="toggleLike(${item.id})">
+                <i class="${item.isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                <span>${item.likes}</span>
+              </button>
+              <button class="read-more-btn" onclick="openModal(${item.id})">Details & Comments (${item.comments.length})</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderPatchesCards() {
+      const grid = document.getElementById('patchesCardsGrid');
+      const patches = appData.items.filter(i => i.category === 'patch');
+      grid.innerHTML = '';
+      patches.forEach(item => {
+        grid.appendChild(createSimpleCard(item));
+      });
+    }
+
+    function renderReleasesCards() {
+      const grid = document.getElementById('releasesCardsGrid');
+      const releases = appData.items.filter(i => i.category === 'release');
+      grid.innerHTML = '';
+      releases.forEach(item => {
+        grid.appendChild(createSimpleCard(item));
+      });
+    }
+
+    function createSimpleCard(item) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-img-container">
+          <img src="${item.img}" class="card-img" alt="${item.title}">
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">${item.title}</h3>
+          <p class="card-desc">${item.desc}</p>
+          <div class="card-footer">
+            <span><i class="fa-regular fa-clock"></i> ${item.time}</span>
+            <button class="read-more-btn" onclick="openModal(${item.id})">Read Patch</button>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    function renderHubs() {
+      const list = document.getElementById('communityList');
+      list.innerHTML = '';
+      appData.hubs.forEach(hub => {
+        const li = document.createElement('li');
+        li.className = 'community-item';
+        li.innerHTML = `
+          <div class="community-info">
+            <div class="community-avatar">${hub.name.substring(0,2)}</div>
+            <div>
+              <div style="font-weight:700; font-size:0.9rem; color:#fff;">${hub.name}</div>
+              <div style="font-size:0.75rem; color:var(--text-main);">${hub.members}</div>
+            </div>
+          </div>
+          <button class="join-btn ${hub.joined ? 'joined' : ''}" onclick="toggleHubJoin(${hub.id})">
+            ${hub.joined ? 'Joined' : 'Join'}
+          </button>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    window.filterCategory = (cat, btn) => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if(cat === 'all') {
+        renderMainCards(appData.items);
+      } else {
+        const filtered = appData.items.filter(i => i.category === cat);
+        renderMainCards(filtered);
+      }
+    };
+
+    window.handleSearch = () => {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = appData.items.filter(i => 
+        i.title.toLowerCase().includes(query) || i.desc.toLowerCase().includes(query)
+      );
+      renderMainCards(filtered);
+    };
+
+    window.toggleLike = (id) => {
+      const item = appData.items.find(i => i.id === id);
+      if(item) {
+        item.isLiked = !item.isLiked;
+        item.likes += item.isLiked ? 1 : -1;
+        renderMainCards(appData.items);
+      }
+    };
+
+    window.toggleHubJoin = (id) => {
+      const hub = appData.hubs.find(h => h.id === id);
+      if(hub) {
+        hub.joined = !hub.joined;
+        renderHubs();
+      }
+    };
+
+    window.openModal = (id) => {
+      const item = appData.items.find(i => i.id === id);
+      if(!item) return;
+
+      appData.activeItemForModal = item;
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalImage').src = item.img;
+      document.getElementById('modalBody').innerText = item.fullDetails;
+      
+      const badgeClass = item.category === 'patch' ? 'badge-patch' : (item.category === 'release' ? 'badge-release' : 'badge-event');
+      document.getElementById('modalBadge').innerHTML = `<span class="card-badge ${badgeClass}">${item.category.toUpperCase()}</span>`;
+
+      renderModalComments();
+      document.getElementById('detailModal').style.display = 'flex';
+    };
+
+    window.closeModal = () => {
+      document.getElementById('detailModal').style.display = 'none';
+      appData.activeItemForModal = null;
+    };
+
+    function renderModalComments() {
+      const container = document.getElementById('modalComments');
+      container.innerHTML = '';
+      if(appData.activeItemForModal.comments.length === 0) {
+        container.innerHTML = '<p style="font-size:0.85rem; color:#888;">No comments yet. Be the first!</p>';
+        return;
+      }
+      appData.activeItemForModal.comments.forEach(c => {
+        const div = document.createElement('div');
+        div.style.background = '#11141a';
+        div.style.padding = '8px 12px';
+        div.style.borderRadius = '6px';
+        div.style.marginBottom = '6px';
+        div.style.fontSize = '0.85rem';
+        div.innerText = c;
+        container.appendChild(div);
+      });
+    }
+
+    window.addModalComment = () => {
+      const input = document.getElementById('modalCommentInput');
+      const val = input.value.trim();
+      if(val !== '' && appData.activeItemForModal) {
+        const name = currentUser ? (currentUser.displayName || 'Gamer') : 'Guest';
+        appData.activeItemForModal.comments.push(`${name}: ${val}`);
+        input.value = '';
+        renderModalComments();
+        renderMainCards(appData.items);
+      }
+    };
+
+    window.openAuthModal = () => document.getElementById('authModal').style.display = 'flex';
+    window.closeAuthModal = () => document.getElementById('authModal').style.display = 'none';
+    window.toggleAuthMode = () => {
+      isSignUp = !isSignUp;
+      document.getElementById('usernameGroup').style.display = isSignUp ? 'block' : 'none';
+      document.getElementById('authModalTitle').innerText = isSignUp ? 'Create Gamer Account' : 'Gamer Account Access';
+      document.getElementById('authSubmitBtn').innerText = isSignUp ? 'Sign Up' : 'Login';
+      document.getElementById('authToggleText').innerText = isSignUp ? 'Already have an account? Login' : 'Need an account? Sign Up';
+    };
+  </script>
+</body>
+</html>
