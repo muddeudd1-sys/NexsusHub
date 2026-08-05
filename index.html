@@ -934,7 +934,7 @@
       errorDiv.style.display = 'none';
 
       if (!email || !password) {
-        errorDiv.innerText = "Meharbani karke Email aur Password dono fill karein!";
+        errorDiv.innerText = "Please fill in both Email and Password fields!";
         errorDiv.style.display = 'block';
         return;
       }
@@ -942,7 +942,7 @@
       try {
         if (isSignUp) {
           if (!username) {
-            errorDiv.innerText = "Aapka GamerTag likhna zaroori hai!";
+            errorDiv.innerText = "Entering your GamerTag / Username is required!";
             errorDiv.style.display = 'block';
             return;
           }
@@ -953,10 +953,10 @@
         }
         window.closeAuthModal();
       } catch (err) {
-        let cleanMsg = "Kuch error aaya hai. Dobara try karein.";
-        if (err.code === 'auth/weak-password') cleanMsg = "Password kam se kam 6 characters ka hona chahiye!";
-        if (err.code === 'auth/email-already-in-use') cleanMsg = "Yeh Email pehle se kisi account par registered hai!";
-        if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') cleanMsg = "Galt Email ya Password! Dobara check karein.";
+        let cleanMsg = "An error occurred. Please try again.";
+        if (err.code === 'auth/weak-password') cleanMsg = "Password must be at least 6 characters long!";
+        if (err.code === 'auth/email-already-in-use') cleanMsg = "This Email is already registered with another account!";
+        if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') cleanMsg = "Incorrect Email or Password! Please check and try again.";
         
         errorDiv.innerText = cleanMsg;
         errorDiv.style.display = 'block';
@@ -1012,7 +1012,7 @@
     };
 
     window.deletePost = (postId) => {
-      if(confirm("Kya aap is post ko remove karna chahte hain?")) {
+      if(confirm("Are you sure you want to remove this post?")) {
         remove(ref(db, `posts/${postId}`));
       }
     };
