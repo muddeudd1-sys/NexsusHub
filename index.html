@@ -34,7 +34,6 @@
       line-height: 1.6;
     }
 
-    /* Top Announcement Bar */
     .top-bar {
       background: var(--highlight);
       color: #fff;
@@ -45,7 +44,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Header & Navigation */
     header {
       background-color: #11141a;
       border-bottom: 2px solid var(--border-color);
@@ -127,7 +125,27 @@
       background: var(--accent-hover);
     }
 
-    /* Main Container */
+    .google-btn {
+      background: #db4437;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      transition: opacity 0.3s;
+    }
+
+    .google-btn:hover {
+      opacity: 0.9;
+    }
+
     .main-layout {
       max-width: 1350px;
       margin: 2rem auto;
@@ -153,7 +171,6 @@
       }
     }
 
-    /* Views Framework */
     .view-content {
       display: none;
     }
@@ -161,7 +178,6 @@
       display: block;
     }
 
-    /* Section Header */
     .section-title {
       font-size: 1.5rem;
       color: var(--text-bright);
@@ -173,7 +189,6 @@
       padding-left: 12px;
     }
 
-    /* Controls Bar */
     .controls-bar {
       display: flex;
       gap: 12px;
@@ -227,7 +242,6 @@
       border-color: var(--accent);
     }
 
-    /* Cards Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -348,7 +362,6 @@
       color: #000;
     }
 
-    /* Sidebar Widgets */
     .sidebar-widget {
       background-color: var(--card-bg);
       border-radius: 10px;
@@ -419,7 +432,6 @@
       color: #000;
     }
 
-    /* Community Chat Widget */
     .chat-box {
       display: flex;
       flex-direction: column;
@@ -477,7 +489,6 @@
       font-weight: bold;
     }
 
-    /* Community Feed Tab Extra Styles */
     .feed-create-post {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -510,7 +521,6 @@
       float: right;
     }
 
-    /* Modals Overlay */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -572,26 +582,75 @@
       display: none;
     }
 
-    /* Footer */
+    /* NEON GLOW & PULSING ANIMATION FOR FOOTER */
     footer {
       background-color: #07080a;
       border-top: 1px solid var(--border-color);
       text-align: center;
-      padding: 1.5rem;
+      padding: 1.8rem 1rem;
       color: var(--text-main);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       margin-top: auto;
+    }
+
+    .footer-text {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .neon-text {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent), 0 0 20px rgba(102, 252, 241, 0.4);
+      animation: neonGlow 2.5s infinite alternate ease-in-out;
+    }
+
+    .pulsing-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #00ff88;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px #00ff88;
+      animation: pulseAnimation 1.5s infinite ease-in-out;
+    }
+
+    @keyframes neonGlow {
+      0% {
+        text-shadow: 0 0 3px var(--accent), 0 0 8px var(--accent);
+      }
+      100% {
+        text-shadow: 0 0 8px var(--accent), 0 0 18px var(--accent), 0 0 28px rgba(102, 252, 241, 0.7);
+      }
+    }
+
+    @keyframes pulseAnimation {
+      0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+      }
+      70% {
+        transform: scale(1.15);
+        box-shadow: 0 0 0 8px rgba(0, 255, 136, 0);
+      }
+      100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0);
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Bar -->
   <div class="top-bar">
     <i class="fa-solid fa-fire"></i> LIVE: Tekken 8 Patch v1.05 & GTA VI Official Schedule Updated!
   </div>
 
-  <!-- Header -->
   <header>
     <div class="nav-container">
       <div class="logo" onclick="switchTab('home')">
@@ -609,19 +668,14 @@
     </div>
   </header>
 
-  <!-- Main Layout -->
   <div class="main-layout">
     
-    <!-- Left Dynamic Main Content Area -->
     <main>
-      
-      <!-- VIEW 1: HOME HUB VIEW -->
       <div id="view-home" class="view-content active-view">
         <div class="section-title">
           <i class="fa-solid fa-newspaper"></i> Live Active Gaming Hub
         </div>
 
-        <!-- Controls: Search & Category Filters -->
         <div class="controls-bar">
           <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -636,7 +690,6 @@
         <div class="cards-grid" id="mainCardsGrid"></div>
       </div>
 
-      <!-- VIEW 2: PATCHES VIEW -->
       <div id="view-patches" class="view-content">
         <div class="section-title">
           <i class="fa-solid fa-wrench"></i> Game Patch Notes & Balance Updates
@@ -645,7 +698,6 @@
         <div class="cards-grid" id="patchesCardsGrid"></div>
       </div>
 
-      <!-- VIEW 3: RELEASES VIEW -->
       <div id="view-releases" class="view-content">
         <div class="section-title">
           <i class="fa-solid fa-rocket"></i> Upcoming Games & Release Radar
@@ -654,13 +706,11 @@
         <div class="cards-grid" id="releasesCardsGrid"></div>
       </div>
 
-      <!-- VIEW 4: COMMUNITY FEED VIEW -->
       <div id="view-community" class="view-content">
         <div class="section-title">
           <i class="fa-solid fa-users"></i> Global Community Discussion Feed
         </div>
         
-        <!-- Create Post Widget -->
         <div class="feed-create-post">
           <textarea id="communityPostInput" placeholder="Share patch feedback, match highlights, or ask the community..."></textarea>
           <button class="post-btn" onclick="publishCommunityPost()"><i class="fa-solid fa-paper-plane"></i> Publish Post</button>
@@ -672,16 +722,12 @@
 
     </main>
 
-    <!-- Right Sidebar -->
     <aside>
-      
-      <!-- Top Active Communities -->
       <div class="sidebar-widget">
         <h3 class="widget-title"><i class="fa-solid fa-shield-halved"></i> Active Game Hubs</h3>
         <ul class="community-list" id="communityList"></ul>
       </div>
 
-      <!-- Live Global Chat Box -->
       <div class="sidebar-widget">
         <h3 class="widget-title"><i class="fa-solid fa-comments"></i> Live Community Chat</h3>
         <div class="chat-box" id="sidebarChatBox"></div>
@@ -690,12 +736,10 @@
           <button onclick="sendSidebarChat()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
       </div>
-
     </aside>
 
   </div>
 
-  <!-- Detail Modal Popup -->
   <div class="modal-overlay" id="detailModal">
     <div class="modal-content">
       <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -713,7 +757,6 @@
     </div>
   </div>
 
-  <!-- AUTH MODAL -->
   <div class="modal-overlay" id="authModal">
     <div class="modal-content" style="max-width: 450px;">
       <span class="modal-close" onclick="closeAuthModal()">&times;</span>
@@ -732,22 +775,38 @@
       </div>
       <div class="error-msg" id="authErrorMsg"></div>
       <button class="auth-btn" style="width:100%; padding:10px; margin-top:10px;" id="authSubmitBtn" onclick="handleAuth()">Login</button>
+      
+      <div style="text-align: center; margin: 12px 0 5px 0; color: #888; font-size:0.85rem;">OR</div>
+      
+      <button class="google-btn" onclick="handleGoogleSignIn()">
+        <i class="fa-brands fa-google"></i> Continue with Google
+      </button>
+
       <p style="text-align:center; margin-top:15px; font-size:0.85rem; cursor:pointer;" onclick="toggleAuthMode()" id="authToggleText">Need an account? Sign Up</p>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2026 NEXUS Gaming Community. Firebase Cloud Powered Service.</p>
+    <p class="footer-text">
+      <span class="pulsing-dot" title="Live Cloud Sync Active"></span> 
+      © 2026 NEXUS HUB — <span class="neon-text">Built by Gamers, For Gamers</span>
+    </p>
   </footer>
 
-  <!-- Firebase Integration Script Module -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-    import { getDatabase, ref, push, onValue, remove, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword, 
+      signInWithEmailAndPassword, 
+      updateProfile, 
+      onAuthStateChanged, 
+      signOut,
+      GoogleAuthProvider,
+      signInWithPopup 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    // FIREBASE CONFIGURATION
     const firebaseConfig = {
       apiKey: "AIzaSyAlUi6R5YKWvnatA6XRnEFo-0V6RxH8UnI",
       authDomain: "nexushub-e9397.firebaseapp.com",
@@ -762,11 +821,11 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase(app);
+    const googleProvider = new GoogleAuthProvider();
 
     let currentUser = null;
     let isSignUp = false;
 
-    // Helper: Dynamic Time-Ago Calculation
     function getTimeAgo(timestamp) {
       if (!timestamp) return 'Recently';
       const seconds = Math.floor((Date.now() - timestamp) / 1000);
@@ -838,7 +897,6 @@
       activeItemForModal: null
     };
 
-    // Firebase Auth State Listener
     onAuthStateChanged(auth, (user) => {
       currentUser = user;
       const authContainer = document.getElementById('authContainer');
@@ -856,7 +914,17 @@
       }
     });
 
-    // Handle Authentication with Friendly Errors
+    window.handleGoogleSignIn = async () => {
+      try {
+        await signInWithPopup(auth, googleProvider);
+        window.closeAuthModal();
+      } catch (error) {
+        const errorDiv = document.getElementById('authErrorMsg');
+        errorDiv.innerText = "Google Login Failed: " + error.message;
+        errorDiv.style.display = 'block';
+      }
+    };
+
     window.handleAuth = async () => {
       const email = document.getElementById('authEmail').value;
       const password = document.getElementById('authPassword').value;
@@ -895,7 +963,6 @@
       }
     };
 
-    // Realtime Database: Live Chat
     window.sendSidebarChat = () => {
       const input = document.getElementById('sidebarChatInput');
       const val = input.value.trim();
@@ -928,7 +995,6 @@
       box.scrollTop = box.scrollHeight;
     });
 
-    // Realtime Database: Community Feed Posts + Dynamic Time + Admin Delete
     window.publishCommunityPost = () => {
       const textarea = document.getElementById('communityPostInput');
       const val = textarea.value.trim();
@@ -961,7 +1027,6 @@
         div.className = 'sidebar-widget';
         div.style.marginBottom = '1rem';
         
-        // Check if Admin or Post Creator
         const canDelete = currentUser && (currentUser.uid === post.uid || currentUser.email === 'muddeudd1@gmail.com');
         
         div.innerHTML = `
@@ -981,7 +1046,6 @@
       });
     });
 
-    // DOM & UI Event Handlers
     document.addEventListener('DOMContentLoaded', () => {
       renderMainCards(appData.items);
       renderPatchesCards();
