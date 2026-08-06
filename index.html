@@ -32,16 +32,56 @@
       flex-direction: column;
       min-height: 100vh;
       line-height: 1.6;
+      /* 5. Subtle Animated Background Gradient Grid */
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(102, 252, 241, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(255, 70, 85, 0.05) 0%, transparent 40%);
+      background-attachment: fixed;
     }
 
+    /* 1. TOP BAR MARQUEE & LIVE PULSE */
     .top-bar {
       background: var(--highlight);
       color: #fff;
-      text-align: center;
       padding: 6px 12px;
       font-size: 0.85rem;
       font-weight: bold;
       letter-spacing: 0.5px;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .top-bar-ticker {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marqueeScroll 22s linear infinite;
+    }
+
+    .top-bar-ticker:hover {
+      animation-play-state: paused;
+    }
+
+    .live-pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #00ff88;
+      border-radius: 50%;
+      margin-right: 6px;
+      box-shadow: 0 0 8px #00ff88;
+      animation: livePulse 1.2s infinite ease-in-out;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100%, 0); }
+    }
+
+    @keyframes livePulse {
+      0% { transform: scale(0.8); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #00ff88; }
+      100% { transform: scale(0.8); opacity: 0.7; }
     }
 
     header {
@@ -61,6 +101,7 @@
       padding: 1rem 1.5rem;
     }
 
+    /* 5. LOGO FLICKER / PULSE EFFECT */
     .logo {
       font-size: 1.6rem;
       font-weight: 900;
@@ -69,10 +110,21 @@
       align-items: center;
       gap: 10px;
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.03);
     }
 
     .logo span {
       color: var(--accent);
+      animation: logoGlow 3s infinite alternate;
+    }
+
+    @keyframes logoGlow {
+      0% { text-shadow: 0 0 2px var(--accent); }
+      100% { text-shadow: 0 0 12px var(--accent), 0 0 20px var(--accent); }
     }
 
     .nav-links {
@@ -98,6 +150,7 @@
       background-color: var(--card-bg);
       color: var(--accent);
       border-bottom: 2px solid var(--accent);
+      box-shadow: 0 4px 12px rgba(102, 252, 241, 0.15);
     }
 
     .user-profile-badge {
@@ -110,6 +163,7 @@
       border: 1px solid var(--border-color);
     }
 
+    /* 3. BUTTON GLOW & HOVER EFFECTS */
     .auth-btn {
       background: var(--accent);
       color: #000;
@@ -118,11 +172,13 @@
       border-radius: 6px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
     }
 
     .auth-btn:hover {
       background: var(--accent-hover);
+      box-shadow: 0 0 12px var(--accent);
+      transform: translateY(-2px);
     }
 
     .google-btn {
@@ -139,11 +195,13 @@
       justify-content: center;
       gap: 10px;
       margin-top: 10px;
-      transition: opacity 0.3s;
+      transition: all 0.3s ease;
     }
 
     .google-btn:hover {
-      opacity: 0.9;
+      opacity: 0.95;
+      box-shadow: 0 0 12px rgba(219, 68, 55, 0.6);
+      transform: translateY(-2px);
     }
 
     .main-layout {
@@ -211,10 +269,12 @@
       color: #fff;
       font-size: 0.95rem;
       outline: none;
+      transition: all 0.3s ease;
     }
 
     .search-box input:focus {
       border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
     }
 
     .search-box i {
@@ -225,6 +285,7 @@
       color: var(--text-main);
     }
 
+    /* 3. ACTIVE & HOVER FILTER BUTTON GLOW */
     .filter-btn {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -233,13 +294,22 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
 
-    .filter-btn.active, .filter-btn:hover {
+    .filter-btn:hover {
       background-color: var(--accent);
       color: #000;
       border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background-color: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      box-shadow: 0 0 14px var(--accent);
     }
 
     .cards-grid {
@@ -249,6 +319,7 @@
       margin-bottom: 2rem;
     }
 
+    /* 2. CARD HOVER GLOW & IMAGE ZOOM */
     .card {
       background-color: var(--card-bg);
       border-radius: 10px;
@@ -256,12 +327,13 @@
       border: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      transition: transform 0.3s, border-color 0.3s;
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       border-color: var(--accent);
+      box-shadow: 0 8px 25px rgba(102, 252, 241, 0.25);
     }
 
     .card-img-container {
@@ -274,6 +346,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.08);
     }
 
     .card-badge {
@@ -321,6 +398,7 @@
       font-size: 0.82rem;
     }
 
+    /* 2. LIKE BUTTON HEART BOUNCE ANIMATION */
     .action-btn {
       background: none;
       border: none;
@@ -330,11 +408,15 @@
       align-items: center;
       gap: 6px;
       font-size: 0.9rem;
-      transition: color 0.2s;
+      transition: all 0.2s ease;
     }
 
     .action-btn:hover, .action-btn.liked {
       color: var(--highlight);
+    }
+
+    .action-btn:active i {
+      transform: scale(1.4) rotate(-10deg);
     }
 
     .delete-btn {
@@ -343,6 +425,11 @@
       border: none;
       cursor: pointer;
       font-size: 0.85rem;
+      transition: transform 0.2s;
+    }
+
+    .delete-btn:hover {
+      transform: scale(1.2);
     }
 
     .read-more-btn {
@@ -354,12 +441,13 @@
       cursor: pointer;
       font-size: 0.8rem;
       font-weight: 600;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
 
     .read-more-btn:hover {
       background-color: var(--accent);
       color: #000;
+      box-shadow: 0 0 10px var(--accent);
     }
 
     .sidebar-widget {
@@ -403,6 +491,7 @@
       gap: 12px;
     }
 
+    /* 4. AVATAR GLOWING RING ANIMATION */
     .community-avatar {
       width: 38px;
       height: 38px;
@@ -413,6 +502,13 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .community-item:hover .community-avatar {
+      box-shadow: 0 0 12px var(--accent);
+      transform: scale(1.05);
     }
 
     .join-btn {
@@ -424,7 +520,11 @@
       cursor: pointer;
       font-size: 0.8rem;
       font-weight: 600;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
+    }
+
+    .join-btn:hover {
+      box-shadow: 0 0 8px var(--accent);
     }
 
     .join-btn.joined {
@@ -442,12 +542,19 @@
       margin-bottom: 10px;
     }
 
+    /* 4. CHAT ENTRY SLIDE-IN ANIMATION */
     .chat-message {
       background: #11141a;
       padding: 10px;
       border-radius: 6px;
       font-size: 0.85rem;
       border-left: 3px solid var(--accent);
+      animation: chatSlideIn 0.3s ease-out forwards;
+    }
+
+    @keyframes chatSlideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .chat-user {
@@ -477,6 +584,11 @@
       border-radius: 6px;
       color: #fff;
       outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .chat-input-area input:focus {
+      border-color: var(--accent);
     }
 
     .chat-input-area button {
@@ -487,6 +599,11 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .chat-input-area button:hover {
+      box-shadow: 0 0 10px var(--accent);
     }
 
     .feed-create-post {
@@ -508,6 +625,11 @@
       resize: none;
       margin-bottom: 10px;
       outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .feed-create-post textarea:focus {
+      border-color: var(--accent);
     }
 
     .post-btn {
@@ -519,6 +641,12 @@
       font-weight: bold;
       cursor: pointer;
       float: right;
+      transition: all 0.3s ease;
+    }
+
+    .post-btn:hover {
+      box-shadow: 0 0 12px var(--accent);
+      transform: translateY(-2px);
     }
 
     .modal-overlay {
@@ -532,6 +660,7 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      backdrop-filter: blur(4px);
     }
 
     .modal-content {
@@ -544,6 +673,7 @@
       position: relative;
       max-height: 85vh;
       overflow-y: auto;
+      box-shadow: 0 0 25px rgba(102, 252, 241, 0.2);
     }
 
     .modal-close {
@@ -553,6 +683,11 @@
       font-size: 1.4rem;
       color: var(--text-main);
       cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+      color: var(--highlight);
     }
 
     .form-group {
@@ -582,7 +717,7 @@
       display: none;
     }
 
-    /* NEON GLOW & PULSING ANIMATION FOR FOOTER */
+    /* FOOTER NEON & PULSE STYLES */
     footer {
       background-color: #07080a;
       border-top: 1px solid var(--border-color);
@@ -621,34 +756,25 @@
     }
 
     @keyframes neonGlow {
-      0% {
-        text-shadow: 0 0 3px var(--accent), 0 0 8px var(--accent);
-      }
-      100% {
-        text-shadow: 0 0 8px var(--accent), 0 0 18px var(--accent), 0 0 28px rgba(102, 252, 241, 0.7);
-      }
+      0% { text-shadow: 0 0 3px var(--accent), 0 0 8px var(--accent); }
+      100% { text-shadow: 0 0 8px var(--accent), 0 0 18px var(--accent), 0 0 28px rgba(102, 252, 241, 0.7); }
     }
 
     @keyframes pulseAnimation {
-      0% {
-        transform: scale(0.9);
-        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
-      }
-      70% {
-        transform: scale(1.15);
-        box-shadow: 0 0 0 8px rgba(0, 255, 136, 0);
-      }
-      100% {
-        transform: scale(0.9);
-        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0);
-      }
+      0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+      70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(0, 255, 136, 0); }
+      100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
     }
   </style>
 </head>
 <body>
 
+  <!-- 1. Smooth Infinite Marquee Ticker with Live Dot Pulse -->
   <div class="top-bar">
-    <i class="fa-solid fa-fire"></i> LIVE: Tekken 8 Patch v1.05, GTA VI Launch Schedule & EVO 2026 Registration Active!
+    <div class="top-bar-ticker" id="liveTopBar">
+      <span class="live-pulse-dot"></span>
+      <i class="fa-solid fa-fire"></i> <span id="tickerText">LIVE: Tekken 8 Patch v1.05, GTA VI Launch Schedule & EVO 2026 Registration Active!</span>
+    </div>
   </div>
 
   <header>
@@ -895,7 +1021,7 @@
     ];
 
     const appData = {
-      items: [],
+      items: fallbackNews, // Initial state set to fallbackNews to display data immediately
       hubs: [
         { id: 1, name: 'Tekken Arena', members: '14.2k Active', joined: false },
         { id: 2, name: 'Resident Evil Hub', members: '8.5k Active', joined: true },
@@ -917,6 +1043,13 @@
         appData.items.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
       } else {
         appData.items = fallbackNews;
+      }
+
+      // Live Top Bar Text Refresh
+      const tickerElem = document.getElementById('tickerText');
+      if (tickerElem && appData.items.length > 0) {
+        const topTitles = appData.items.slice(0, 2).map(i => i.title).join(' | ');
+        tickerElem.innerText = `LIVE: ${topTitles} & EVO 2026 Registration Active!`;
       }
 
       renderMainCards(appData.items);
@@ -1191,7 +1324,12 @@
       if(cat === 'all') {
         renderMainCards(appData.items);
       } else {
-        const filtered = appData.items.filter(i => i.category === cat);
+        const filtered = appData.items.filter(i => {
+          if (cat === 'event') {
+            return i.category === 'event' || i.category === 'tournament';
+          }
+          return i.category === cat;
+        });
         renderMainCards(filtered);
       }
     };
