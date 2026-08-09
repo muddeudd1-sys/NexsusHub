@@ -762,23 +762,24 @@
   <div class="top-bar">
     <div class="top-bar-ticker" id="liveTopBar">
       <span class="live-pulse-dot"></span>
-      <i class="fa-solid fa-fire"></i> <span id="tickerText">LIVE: Tekken 8 Version 3.01.01 Major Update Out Now | GTA VI Launch Schedule & EVO 2026 Registration Active!</span>
+      <i class="fa-solid fa-fire"></i> <span id="tickerText">LIVE: Tekken 8 Version 3.01.01 Major Update Out Now
+ | GTA VI Launch Schedule & EVO 2026 Registration Active!</span>
     </div>
   </div>
 
   <header>
     <div class="nav-container">
-      <div class="logo" onclick="switchTab('home')">
+      <div class="logo" onclick="window.switchTab('home')">
         <i class="fa-solid fa-gamepad"></i> NEXUS<span>HUB</span>
       </div>
       <ul class="nav-links">
-        <li><a class="nav-link active" onclick="switchTab('home')" id="nav-home"><i class="fa-solid fa-house"></i> Home</a></li>
-        <li><a class="nav-link" onclick="switchTab('patches')" id="nav-patches"><i class="fa-solid fa-wrench"></i> Patches</a></li>
-        <li><a class="nav-link" onclick="switchTab('releases')" id="nav-releases"><i class="fa-solid fa-rocket"></i> Releases</a></li>
-        <li><a class="nav-link" onclick="switchTab('community')" id="nav-community"><i class="fa-solid fa-comments"></i> Community Feed</a></li>
+        <li><a class="nav-link active" onclick="window.switchTab('home')" id="nav-home"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a class="nav-link" onclick="window.switchTab('patches')" id="nav-patches"><i class="fa-solid fa-wrench"></i> Patches</a></li>
+        <li><a class="nav-link" onclick="window.switchTab('releases')" id="nav-releases"><i class="fa-solid fa-rocket"></i> Releases</a></li>
+        <li><a class="nav-link" onclick="window.switchTab('community')" id="nav-community"><i class="fa-solid fa-comments"></i> Community Feed</a></li>
       </ul>
       <div id="authContainer">
-        <button class="auth-btn" onclick="openAuthModal()"><i class="fa-solid fa-right-to-bracket"></i> Login / Signup</button>
+        <button class="auth-btn" onclick="window.openAuthModal()"><i class="fa-solid fa-right-to-bracket"></i> Login / Signup</button>
       </div>
     </div>
   </header>
@@ -794,12 +795,12 @@
         <div class="controls-bar">
           <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search active games, patches, releases...">
+            <input type="text" id="searchInput" onkeyup="window.handleSearch()" placeholder="Search active games, patches, releases...">
           </div>
-          <button class="filter-btn active" onclick="filterCategory('all', this)">All Feeds</button>
-          <button class="filter-btn" onclick="filterCategory('patch', this)">Patch Notes</button>
-          <button class="filter-btn" onclick="filterCategory('release', this)">Releases</button>
-          <button class="filter-btn" onclick="filterCategory('event', this)">Tournaments</button>
+          <button class="filter-btn active" onclick="window.filterCategory('all', this)">All Feeds</button>
+          <button class="filter-btn" onclick="window.filterCategory('patch', this)">Patch Notes</button>
+          <button class="filter-btn" onclick="window.filterCategory('release', this)">Releases</button>
+          <button class="filter-btn" onclick="window.filterCategory('event', this)">Tournaments</button>
         </div>
 
         <div class="cards-grid" id="mainCardsGrid"></div>
@@ -828,7 +829,7 @@
         
         <div class="feed-create-post">
           <textarea id="communityPostInput" placeholder="Share patch feedback, match highlights, or ask the community..."></textarea>
-          <button class="post-btn" onclick="publishCommunityPost()"><i class="fa-solid fa-paper-plane"></i> Publish Post</button>
+          <button class="post-btn" onclick="window.publishCommunityPost()"><i class="fa-solid fa-paper-plane"></i> Publish Post</button>
           <div style="clear: both;"></div>
         </div>
 
@@ -847,8 +848,8 @@
         <h3 class="widget-title"><i class="fa-solid fa-comments"></i> Live Community Chat</h3>
         <div class="chat-box" id="sidebarChatBox"></div>
         <div class="chat-input-area">
-          <input type="text" id="sidebarChatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendSidebarChat()">
-          <button onclick="sendSidebarChat()"><i class="fa-solid fa-paper-plane"></i></button>
+          <input type="text" id="sidebarChatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') window.sendSidebarChat()">
+          <button onclick="window.sendSidebarChat()"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
       </div>
     </aside>
@@ -857,7 +858,7 @@
 
   <div class="modal-overlay" id="detailModal">
     <div class="modal-content">
-      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <span class="modal-close" onclick="window.closeModal()">&times;</span>
       <h2 id="modalTitle" style="color:var(--text-bright); margin-bottom: 10px;"></h2>
       <div id="modalBadge" style="margin-bottom: 15px;"></div>
       <img id="modalImage" src="" style="width:100%; height:220px; object-fit:cover; border-radius:8px; margin-bottom:15px;" alt="Detail Image">
@@ -866,15 +867,15 @@
       <h3 style="color:var(--text-bright); margin-bottom: 10px; font-size:1.1rem;">Discussion & Comments</h3>
       <div id="modalComments" style="margin-bottom:15px; max-height:150px; overflow-y:auto;"></div>
       <div class="chat-input-area">
-        <input type="text" id="modalCommentInput" placeholder="Write a comment...">
-        <button onclick="addModalComment()">Comment</button>
+        <input type="text" id="modalCommentInput" placeholder="Write a comment..." onkeypress="if(event.key==='Enter') window.addModalComment()">
+        <button onclick="window.addModalComment()">Comment</button>
       </div>
     </div>
   </div>
 
   <div class="modal-overlay" id="authModal">
     <div class="modal-content" style="max-width: 450px;">
-      <span class="modal-close" onclick="closeAuthModal()">&times;</span>
+      <span class="modal-close" onclick="window.closeAuthModal()">&times;</span>
       <h2 style="color:#fff; margin-bottom:15px;" id="authModalTitle">Gamer Account Access</h2>
       <div class="form-group" id="usernameGroup" style="display:none;">
         <label>GamerTag / Username</label>
@@ -889,15 +890,15 @@
         <input type="password" id="authPassword" placeholder="••••••••">
       </div>
       <div class="error-msg" id="authErrorMsg"></div>
-      <button class="auth-btn" style="width:100%; padding:10px; margin-top:10px;" id="authSubmitBtn" onclick="handleAuth()">Login</button>
+      <button class="auth-btn" style="width:100%; padding:10px; margin-top:10px;" id="authSubmitBtn" onclick="window.handleAuth()">Login</button>
       
       <div style="text-align: center; margin: 12px 0 5px 0; color: #888; font-size:0.85rem;">OR</div>
       
-      <button class="google-btn" onclick="handleGoogleSignIn()">
+      <button class="google-btn" onclick="window.handleGoogleSignIn()">
         <i class="fa-brands fa-google"></i> Continue with Google
       </button>
 
-      <p style="text-align:center; margin-top:15px; font-size:0.85rem; cursor:pointer;" onclick="toggleAuthMode()" id="authToggleText">Need an account? Sign Up</p>
+      <p style="text-align:center; margin-top:15px; font-size:0.85rem; cursor:pointer;" onclick="window.toggleAuthMode()" id="authToggleText">Need an account? Sign Up</p>
     </div>
   </div>
 
@@ -909,552 +910,537 @@
   </footer>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { 
-      getAuth, 
-      createUserWithEmailAndPassword, 
-      signInWithEmailAndPassword, 
-      updateProfile, 
-      onAuthStateChanged, 
-      signOut,
-      GoogleAuthProvider,
-      signInWithPopup 
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-    import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    updateProfile, 
+    onAuthStateChanged, 
+    signOut,
+    GoogleAuthProvider,
+    signInWithPopup 
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  import { getDatabase, ref, push, onValue, remove, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAlUi6R5YKWvnatA6XRnEFo-0V6RxH8UnI",
-      authDomain: "nexushub-e9397.firebaseapp.com",
-      databaseURL: "https://nexushub-e9397-default-rtdb.firebaseio.com",
-      projectId: "nexushub-e9397",
-      storageBucket: "nexushub-e9397.firebasestorage.app",
-      messagingSenderId: "195336282623",
-      appId: "1:195336282623:web:17991c600f2d81df9947ca",
-      measurementId: "G-H76GX6K8H8"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyAlUi6R5YKWvnatA6XRnEFo-0V6RxH8UnI",
+    authDomain: "nexushub-e9397.firebaseapp.com",
+    databaseURL: "https://nexushub-e9397-default-rtdb.firebaseio.com",
+    projectId: "nexushub-e9397",
+    storageBucket: "nexushub-e9397.firebasestorage.app",
+    messagingSenderId: "195336282623",
+    appId: "1:195336282623:web:17991c600f2d81df9947ca",
+    measurementId: "G-H76GX6K8H8"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getDatabase(app);
-    const googleProvider = new GoogleAuthProvider();
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getDatabase(app);
+  const googleProvider = new GoogleAuthProvider();
 
-    let currentUser = null;
-    let isSignUp = false;
+  let currentUser = null;
+  let isSignUp = false;
 
-    function getTimeAgo(timestamp) {
-      if (!timestamp) return 'Recently';
-      const seconds = Math.floor((Date.now() - timestamp) / 1000);
-      if (seconds < 60) return 'Just now';
-      const minutes = Math.floor(seconds / 60);
-      if (minutes < 60) return `${minutes} mins ago`;
-      const hours = Math.floor(minutes / 60);
-      if (hours < 24) return `${hours} hours ago`;
-      const days = Math.floor(hours / 24);
-      return `${days} days ago`;
+  function getTimeAgo(timestamp) {
+    if (!timestamp) return 'Recently';
+    const seconds = Math.floor((Date.now() - timestamp) / 1000);
+    if (seconds < 60) return 'Just now';
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes} mins ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours} hours ago`;
+    const days = Math.floor(hours / 24);
+    return `${days} days ago`;
+  }
+
+  function normalizeTitle(title) {
+    return (title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+
+  const fallbackNews = [
+    {
+      id: 'gta6-launch-schedule',
+      category: 'release',
+      title: 'GTA VI Official Launch Schedule',
+      desc: 'Rockstar Games updates official release windows alongside brand new map screenshots and vice city breakdown.',
+      fullDetails: 'The next evolution of open-world gaming arrives with dual protagonists in Vice City. Advanced AI traffic, real-time weather physics, and fully interactive interiors promise an unparalleled gaming experience.',
+      img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600',
+      time: '15 mins ago',
+      timestamp: Date.now() - 900000,
+      likes: 890,
+      isLiked: false,
+      comments: ['Can not wait for this masterclass!', 'Vice City visuals look unbelievable.']
+    },
+    {
+      id: 'evo-2026-championship',
+      category: 'event',
+      title: 'EVO Fighting Championship 2026',
+      desc: 'Global tournament registration opens featuring Tekken 8, Street Fighter 6, and King of Fighters XV.',
+      fullDetails: 'EVO 2026 is set to break attendance records! Featuring a massive $100k prize pool, world-class commentary teams, and community open brackets for all major fighting game franchises.',
+      img: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600',
+      time: '1 hour ago',
+      timestamp: Date.now() - 3600000,
+      likes: 310,
+      isLiked: false,
+      comments: ['Signed up for Tekken 8 bracket!']
+    },
+    {
+      id: 'valorant-ep9-act2',
+      category: 'patch',
+      title: 'Valorant Episode 9 Act 2 Update',
+      desc: 'Duelist nerfs, new map rotations, and anti-cheat kernel updates deployed.',
+      fullDetails: 'Riot Games has deployed anti-cheat updates to suppress hardware spoofers, alongside balance tweaks for Jett mobility and Lotus map choke points.',
+      img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600',
+      time: '2 hours ago',
+      timestamp: Date.now() - 7200000,
+      likes: 520,
+      isLiked: false,
+      comments: ['Ranked matchmaking feels much fairer.']
     }
+  ];
 
-    function normalizeTitle(title) {
-      return (title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    }
+  const appData = {
+    items: [...fallbackNews],
+    hubs: [
+      { id: 1, name: 'Tekken Arena', members: '14.2k Active', joined: false },
+      { id: 2, name: 'Resident Evil Hub', members: '8.5k Active', joined: true },
+      { id: 3, name: 'KOF Fighters League', members: '6.1k Active', joined: false }
+    ],
+    activeItemForModal: null
+  };
 
-    // Default Fallback Feeds
-    const fallbackNews = [
-      {
-        id: 'tekken8-patch-105',
-        category: 'patch',
-        title: 'Tekken 8 Balance Patch v1.05',
-        desc: 'Major adjustments for high-tier characters, matchmaking stabilization, and hitboxes fixes for Lars & Dragunov.',
-        fullDetails: 'Tekken 8 Patch 1.05 brings critical balance updates! Throw tracking has been tuned down by 15%, heat dash wall splats are adjusted for balanced damage output, and rollback netcode performance has been upgraded across cross-play servers.',
-        img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600',
-        time: 'Just now',
-        timestamp: Date.now(),
-        likes: 142,
-        isLiked: false,
-        comments: ['Great patch for Dragunov mains!', 'Matchmaking feels much smoother now.']
-      },
-      {
-        id: 'gta6-launch-schedule',
-        category: 'release',
-        title: 'GTA VI Official Launch Schedule',
-        desc: 'Rockstar Games updates official release windows alongside brand new map screenshots and vice city breakdown.',
-        fullDetails: 'The next evolution of open-world gaming arrives with dual protagonists in Vice City. Advanced AI traffic, real-time weather physics, and fully interactive interiors promise an unparalleled gaming experience.',
-        img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600',
-        time: '15 mins ago',
-        timestamp: Date.now() - 900000,
-        likes: 890,
-        isLiked: false,
-        comments: ['Can not wait for this masterclass!', 'Vice City visuals look unbelievable.']
-      },
-      {
-        id: 'evo-2026-championship',
-        category: 'event',
-        title: 'EVO Fighting Championship 2026',
-        desc: 'Global tournament registration opens featuring Tekken 8, Street Fighter 6, and King of Fighters XV.',
-        fullDetails: 'EVO 2026 is set to break attendance records! Featuring a massive $100k prize pool, world-class commentary teams, and community open brackets for all major fighting game franchises.',
-        img: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600',
-        time: '1 hour ago',
-        timestamp: Date.now() - 3600000,
-        likes: 310,
-        isLiked: false,
-        comments: ['Signed up for Tekken 8 bracket!']
-      },
-      {
-        id: 'valorant-ep9-act2',
-        category: 'patch',
-        title: 'Valorant Episode 9 Act 2 Update',
-        desc: 'Duelist nerfs, new map rotations, and anti-cheat kernel updates deployed.',
-        fullDetails: 'Riot Games has deployed anti-cheat updates to suppress hardware spoofers, alongside balance tweaks for Jett mobility and Lotus map choke points.',
-        img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600',
-        time: '2 hours ago',
-        timestamp: Date.now() - 7200000,
-        likes: 520,
-        isLiked: false,
-        comments: ['Ranked matchmaking feels much fairer.']
-      }
-    ];
-
-    const appData = {
-      items: [...fallbackNews],
-      hubs: [
-        { id: 1, name: 'Tekken Arena', members: '14.2k Active', joined: false },
-        { id: 2, name: 'Resident Evil Hub', members: '8.5k Active', joined: true },
-        { id: 3, name: 'KOF Fighters League', members: '6.1k Active', joined: false }
-      ],
-      activeItemForModal: null
-    };
-
-    // Firebase Live Sync for Feeds / News with Smart Deduplication
-    onValue(ref(db, 'news'), (snapshot) => {
-      let firebaseItems = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          const item = child.val();
-          item.dbKey = child.key;
-          if (!item.comments) item.comments = [];
-          firebaseItems.push(item);
-        });
-      }
-
-      // Merge Firebase items with local fallback items
-      const combined = [...firebaseItems, ...fallbackNews];
-      const uniqueItems = [];
-      const seenTitles = new Set();
-
-      combined.forEach(item => {
-        const key = normalizeTitle(item.title);
-        if (!seenTitles.has(key)) {
-          seenTitles.add(key);
-          uniqueItems.push(item);
-        }
-      });
-
-      appData.items = uniqueItems;
-      appData.items.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
-
-      // Live Top Bar Text Refresh
-      const tickerElem = document.getElementById('tickerText');
-      if (tickerElem && appData.items.length > 0) {
-        const topTitles = appData.items.slice(0, 3).map(i => i.title).join(' | ');
-        tickerElem.innerText = `LIVE: ${topTitles} | EVO 2026 Registration Active!`;
-      }
-
-      const activeBtn = document.querySelector('.filter-btn.active');
-      const currentFilter = activeBtn ? activeBtn.getAttribute('onclick').match(/'([^']+)'/)[1] : 'all';
-
-      if (currentFilter === 'all') {
-        renderMainCards(appData.items);
-      } else {
-        filterCategory(currentFilter, activeBtn);
-      }
-
-      renderPatchesCards();
-      renderReleasesCards();
-    });
-
-    onAuthStateChanged(auth, (user) => {
-      currentUser = user;
-      const authContainer = document.getElementById('authContainer');
-      if (user) {
-        authContainer.innerHTML = `
-          <div class="user-profile-badge">
-            <i class="fa-solid fa-user-ninja" style="color: var(--accent);"></i>
-            <span style="font-size: 0.88rem; font-weight: 700; color: #fff;">${user.displayName || 'Gamer'}</span>
-            <i class="fa-solid fa-right-from-bracket" style="cursor:pointer; margin-left:8px; color:#ff4655;" title="Logout" id="logoutBtn"></i>
-          </div>
-        `;
-        document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
-      } else {
-        authContainer.innerHTML = `<button class="auth-btn" onclick="openAuthModal()"><i class="fa-solid fa-right-to-bracket"></i> Login / Signup</button>`;
-      }
-    });
-
-    window.handleGoogleSignIn = async () => {
-      try {
-        await signInWithPopup(auth, googleProvider);
-        window.closeAuthModal();
-      } catch (error) {
-        const errorDiv = document.getElementById('authErrorMsg');
-        errorDiv.innerText = "Google Login Failed: " + error.message;
-        errorDiv.style.display = 'block';
-      }
-    };
-
-    window.handleAuth = async () => {
-      const email = document.getElementById('authEmail').value;
-      const password = document.getElementById('authPassword').value;
-      const username = document.getElementById('authUsername').value;
-      const errorDiv = document.getElementById('authErrorMsg');
-
-      errorDiv.style.display = 'none';
-
-      if (!email || !password) {
-        errorDiv.innerText = "Please fill in both Email and Password fields!";
-        errorDiv.style.display = 'block';
-        return;
-      }
-
-      try {
-        if (isSignUp) {
-          if (!username) {
-            errorDiv.innerText = "Entering your GamerTag / Username is required!";
-            errorDiv.style.display = 'block';
-            return;
-          }
-          const res = await createUserWithEmailAndPassword(auth, email, password);
-          await updateProfile(res.user, { displayName: username });
-        } else {
-          await signInWithEmailAndPassword(auth, email, password);
-        }
-        window.closeAuthModal();
-      } catch (err) {
-        let cleanMsg = "An error occurred. Please try again.";
-        if (err.code === 'auth/weak-password') cleanMsg = "Password must be at least 6 characters long!";
-        if (err.code === 'auth/email-already-in-use') cleanMsg = "This Email is already registered with another account!";
-        if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') cleanMsg = "Incorrect Email or Password! Please check and try again.";
-        
-        errorDiv.innerText = cleanMsg;
-        errorDiv.style.display = 'block';
-      }
-    };
-
-    window.sendSidebarChat = () => {
-      const input = document.getElementById('sidebarChatInput');
-      const val = input.value.trim();
-      if(!currentUser) return alert("Please Login to send messages!");
-      if(val !== '') {
-        const now = new Date();
-        const timeStr = `${now.getHours()}:${now.getMinutes()<10?'0':''}${now.getMinutes()}`;
-        push(ref(db, 'chats'), {
-          user: currentUser.displayName || 'Gamer',
-          text: val,
-          time: timeStr
-        });
-        input.value = '';
-      }
-    };
-
-    onValue(ref(db, 'chats'), (snapshot) => {
-      const box = document.getElementById('sidebarChatBox');
-      box.innerHTML = '';
+  onValue(ref(db, 'news'), (snapshot) => {
+    let firebaseItems = [];
+    if (snapshot.exists()) {
       snapshot.forEach((child) => {
-        const c = child.val();
-        const msg = document.createElement('div');
-        msg.className = 'chat-message';
-        msg.innerHTML = `
-          <div class="chat-user"><span>${c.user}</span> <span class="chat-time">${c.time}</span></div>
-          <div>${c.text}</div>
-        `;
-        box.appendChild(msg);
+        const item = child.val();
+        item.dbKey = child.key;
+        if (!item.comments) item.comments = [];
+        firebaseItems.push(item);
       });
-      box.scrollTop = box.scrollHeight;
+    }
+
+    const combined = [...firebaseItems, ...fallbackNews];
+    const uniqueItems = [];
+    const seenTitles = new Set();
+
+    combined.forEach(item => {
+      const key = normalizeTitle(item.title);
+      if (!seenTitles.has(key)) {
+        seenTitles.add(key);
+        uniqueItems.push(item);
+      }
     });
 
-    window.publishCommunityPost = () => {
-      const textarea = document.getElementById('communityPostInput');
-      const val = textarea.value.trim();
-      if(!currentUser) return alert("Please Login to publish posts!");
-      if(val !== '') {
-        push(ref(db, 'posts'), {
-          user: currentUser.displayName || 'Gamer',
-          uid: currentUser.uid,
-          text: val,
-          likes: 0,
-          timestamp: Date.now()
-        });
-        textarea.value = '';
-      }
-    };
+    appData.items = uniqueItems;
+    appData.items.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
-    window.deletePost = (postId) => {
-      if(confirm("Are you sure you want to remove this post?")) {
-        remove(ref(db, `posts/${postId}`));
-      }
-    };
+    const tickerElem = document.getElementById('tickerText');
+    if (tickerElem && appData.items.length > 0) {
+      const topTitles = appData.items.slice(0, 3).map(i => i.title).join(' | ');
+      tickerElem.innerText = `LIVE: ${topTitles} | EVO 2026 Registration Active!`;
+    }
 
-    onValue(ref(db, 'posts'), (snapshot) => {
-      const container = document.getElementById('communityPostsContainer');
-      container.innerHTML = '';
-      snapshot.forEach(child => {
-        const postId = child.key;
-        const post = child.val();
-        const div = document.createElement('div');
-        div.className = 'sidebar-widget';
-        div.style.marginBottom = '1rem';
-        
-        const canDelete = currentUser && (currentUser.uid === post.uid || currentUser.email === 'muddeudd1@gmail.com');
-        
-        div.innerHTML = `
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-weight:bold; color:var(--accent);"><i class="fa-solid fa-user-circle"></i> ${post.user}</span>
-            <div style="display:flex; gap:10px; align-items:center;">
-              <span style="font-size:0.8rem; color:#888;">${getTimeAgo(post.timestamp)}</span>
-              ${canDelete ? `<button class="delete-btn" onclick="deletePost('${postId}')" title="Delete Post"><i class="fa-solid fa-trash"></i></button>` : ''}
-            </div>
-          </div>
-          <p style="color:#fff; margin-bottom:12px;">${post.text}</p>
-          <button class="action-btn" onclick="this.querySelector('span').innerText = parseInt(this.querySelector('span').innerText) + 1">
-            <i class="fa-regular fa-thumbs-up"></i> <span>${post.likes || 0}</span> Likes
-          </button>
-        `;
-        container.appendChild(div);
-      });
-    });
+    const activeBtn = document.querySelector('.filter-btn.active');
+    const currentFilter = activeBtn ? activeBtn.getAttribute('onclick').match(/'([^']+)'/)[1] : 'all';
 
-    document.addEventListener('DOMContentLoaded', () => {
+    if (currentFilter === 'all') {
       renderMainCards(appData.items);
-      renderPatchesCards();
-      renderReleasesCards();
-      renderHubs();
-    });
+    } else {
+      window.filterCategory(currentFilter, activeBtn);
+    }
 
-    window.switchTab = (tabName) => {
-      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-      document.querySelectorAll('.view-content').forEach(view => view.classList.remove('active-view'));
+    renderPatchesCards();
+    renderReleasesCards();
+  });
 
-      document.getElementById(`nav-${tabName}`).classList.add('active');
-      document.getElementById(`view-${tabName}`).classList.add('active-view');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+    const authContainer = document.getElementById('authContainer');
+    if (user) {
+      authContainer.innerHTML = `
+        <div class="user-profile-badge">
+          <i class="fa-solid fa-user-ninja" style="color: var(--accent);"></i>
+          <span style="font-size: 0.88rem; font-weight: 700; color: #fff;">${user.displayName || 'Gamer'}</span>
+          <i class="fa-solid fa-right-from-bracket" style="cursor:pointer; margin-left:8px; color:#ff4655;" title="Logout" id="logoutBtn"></i>
+        </div>
+      `;
+      document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
+    } else {
+      authContainer.innerHTML = `<button class="auth-btn" onclick="window.openAuthModal()"><i class="fa-solid fa-right-to-bracket"></i> Login / Signup</button>`;
+    }
+  });
 
-    function renderMainCards(itemsToRender) {
-      const grid = document.getElementById('mainCardsGrid');
-      grid.innerHTML = '';
+  window.handleGoogleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      window.closeAuthModal();
+    } catch (error) {
+      const errorDiv = document.getElementById('authErrorMsg');
+      errorDiv.innerText = "Google Login Failed: " + error.message;
+      errorDiv.style.display = 'block';
+    }
+  };
 
-      if(!itemsToRender || itemsToRender.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 2rem;">No items found matching your filter.</p>';
-        return;
+  window.handleAuth = async () => {
+    const email = document.getElementById('authEmail').value;
+    const password = document.getElementById('authPassword').value;
+    const username = document.getElementById('authUsername').value;
+    const errorDiv = document.getElementById('authErrorMsg');
+
+    errorDiv.style.display = 'none';
+
+    if (!email || !password) {
+      errorDiv.innerText = "Please fill in both Email and Password fields!";
+      errorDiv.style.display = 'block';
+      return;
+    }
+
+    try {
+      if (isSignUp) {
+        if (!username) {
+          errorDiv.innerText = "Entering your GamerTag / Username is required!";
+          errorDiv.style.display = 'block';
+          return;
+        }
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(res.user, { displayName: username });
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
       }
+      window.closeAuthModal();
+    } catch (err) {
+      let cleanMsg = "An error occurred. Please try again.";
+      if (err.code === 'auth/weak-password') cleanMsg = "Password must be at least 6 characters long!";
+      if (err.code === 'auth/email-already-in-use') cleanMsg = "This Email is already registered with another account!";
+      if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') cleanMsg = "Incorrect Email or Password! Please check and try again.";
+      
+      errorDiv.innerText = cleanMsg;
+      errorDiv.style.display = 'block';
+    }
+  };
 
-      itemsToRender.forEach(item => {
-        const badgeClass = item.category === 'patch' ? 'badge-patch' : (item.category === 'release' ? 'badge-release' : 'badge-event');
-        const badgeLabel = item.category === 'patch' ? 'Patch Update' : (item.category === 'release' ? 'Release Radar' : 'Tournament');
+  window.sendSidebarChat = () => {
+    const input = document.getElementById('sidebarChatInput');
+    const val = input.value.trim();
+    if(!currentUser) return alert("Please Login to send messages!");
+    if(val !== '') {
+      const now = new Date();
+      const timeStr = `${now.getHours()}:${now.getMinutes()<10?'0':''}${now.getMinutes()}`;
+      push(ref(db, 'chats'), {
+        user: currentUser.displayName || 'Gamer',
+        text: val,
+        time: timeStr
+      });
+      input.value = '';
+    }
+  };
 
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="card-img-container">
-            <img src="${item.img}" class="card-img" alt="${item.title}">
-            <span class="card-badge ${badgeClass}">${badgeLabel}</span>
+  onValue(ref(db, 'chats'), (snapshot) => {
+    const box = document.getElementById('sidebarChatBox');
+    box.innerHTML = '';
+    snapshot.forEach((child) => {
+      const c = child.val();
+      const msg = document.createElement('div');
+      msg.className = 'chat-message';
+      msg.innerHTML = `
+        <div class="chat-user"><span>${c.user}</span> <span class="chat-time">${c.time}</span></div>
+        <div>${c.text}</div>
+      `;
+      box.appendChild(msg);
+    });
+    box.scrollTop = box.scrollHeight;
+  });
+
+  window.publishCommunityPost = () => {
+    const textarea = document.getElementById('communityPostInput');
+    const val = textarea.value.trim();
+    if(!currentUser) return alert("Please Login to publish posts!");
+    if(val !== '') {
+      push(ref(db, 'posts'), {
+        user: currentUser.displayName || 'Gamer',
+        uid: currentUser.uid,
+        text: val,
+        likes: 0,
+        timestamp: Date.now()
+      });
+      textarea.value = '';
+    }
+  };
+
+  window.deletePost = (postId) => {
+    if(confirm("Are you sure you want to remove this post?")) {
+      remove(ref(db, `posts/${postId}`));
+    }
+  };
+
+  onValue(ref(db, 'posts'), (snapshot) => {
+    const container = document.getElementById('communityPostsContainer');
+    container.innerHTML = '';
+    snapshot.forEach(child => {
+      const postId = child.key;
+      const post = child.val();
+      const div = document.createElement('div');
+      div.className = 'sidebar-widget';
+      div.style.marginBottom = '1rem';
+      
+      const canDelete = currentUser && (currentUser.uid === post.uid || currentUser.email === 'muddeudd1@gmail.com');
+      
+      div.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <span style="font-weight:bold; color:var(--accent);"><i class="fa-solid fa-user-circle"></i> ${post.user}</span>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span style="font-size:0.8rem; color:#888;">${getTimeAgo(post.timestamp)}</span>
+            ${canDelete ? `<button class="delete-btn" onclick="window.deletePost('${postId}')" title="Delete Post"><i class="fa-solid fa-trash"></i></button>` : ''}
           </div>
-          <div class="card-content">
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-desc">${item.desc}</p>
-            <div class="card-footer">
-              <button class="action-btn ${item.isLiked ? 'liked' : ''}" onclick="toggleLike('${item.dbKey || item.id}')">
-                <i class="${item.isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-                <span>${item.likes || 0}</span>
-              </button>
-              <button class="read-more-btn" onclick="openModal('${item.dbKey || item.id}')">Details & Comments (${(item.comments || []).length})</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
+        </div>
+        <p style="color:#fff; margin-bottom:12px;">${post.text}</p>
+        <button class="action-btn" onclick="this.querySelector('span').innerText = parseInt(this.querySelector('span').innerText) + 1">
+          <i class="fa-regular fa-thumbs-up"></i> <span>${post.likes || 0}</span> Likes
+        </button>
+      `;
+      container.appendChild(div);
+    });
+  });
+
+  window.switchTab = (tabName) => {
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+    document.querySelectorAll('.view-content').forEach(view => view.classList.remove('active-view'));
+
+    const navElem = document.getElementById(`nav-${tabName}`);
+    const viewElem = document.getElementById(`view-${tabName}`);
+    
+    if (navElem) navElem.classList.add('active');
+    if (viewElem) viewElem.classList.add('active-view');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  function renderMainCards(itemsToRender) {
+    const grid = document.getElementById('mainCardsGrid');
+    grid.innerHTML = '';
+
+    if(!itemsToRender || itemsToRender.length === 0) {
+      grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 2rem;">No items found matching your filter.</p>';
+      return;
     }
 
-    function renderPatchesCards() {
-      const grid = document.getElementById('patchesCardsGrid');
-      const patches = appData.items.filter(i => i.category === 'patch');
-      grid.innerHTML = '';
-      patches.forEach(item => {
-        grid.appendChild(createSimpleCard(item));
-      });
-    }
+    itemsToRender.forEach(item => {
+      const badgeClass = item.category === 'patch' ? 'badge-patch' : (item.category === 'release' ? 'badge-release' : 'badge-event');
+      const badgeLabel = item.category === 'patch' ? 'Patch Update' : (item.category === 'release' ? 'Release Radar' : 'Tournament');
 
-    function renderReleasesCards() {
-      const grid = document.getElementById('releasesCardsGrid');
-      const releases = appData.items.filter(i => i.category === 'release');
-      grid.innerHTML = '';
-      releases.forEach(item => {
-        grid.appendChild(createSimpleCard(item));
-      });
-    }
-
-    function createSimpleCard(item) {
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
         <div class="card-img-container">
           <img src="${item.img}" class="card-img" alt="${item.title}">
+          <span class="card-badge ${badgeClass}">${badgeLabel}</span>
         </div>
         <div class="card-content">
           <h3 class="card-title">${item.title}</h3>
           <p class="card-desc">${item.desc}</p>
           <div class="card-footer">
-            <span><i class="fa-regular fa-clock"></i> ${item.time || getTimeAgo(item.timestamp)}</span>
-            <button class="read-more-btn" onclick="openModal('${item.dbKey || item.id}')">Read Details</button>
+            <button class="action-btn ${item.isLiked ? 'liked' : ''}" onclick="window.toggleLike('${item.dbKey || item.id}')">
+              <i class="${item.isLiked ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+              <span>${item.likes || 0}</span>
+            </button>
+            <button class="read-more-btn" onclick="window.openModal('${item.dbKey || item.id}')">Details & Comments (${(item.comments || []).length})</button>
           </div>
         </div>
       `;
-      return card;
-    }
+      grid.appendChild(card);
+    });
+  }
 
-    function renderHubs() {
-      const list = document.getElementById('communityList');
-      list.innerHTML = '';
-      appData.hubs.forEach(hub => {
-        const li = document.createElement('li');
-        li.className = 'community-item';
-        li.innerHTML = `
-          <div class="community-info">
-            <div class="community-avatar">${hub.name.substring(0,2)}</div>
-            <div>
-              <div style="font-weight:700; font-size:0.9rem; color:#fff;">${hub.name}</div>
-              <div style="font-size:0.75rem; color:var(--text-main);">${hub.members}</div>
-            </div>
+  function renderPatchesCards() {
+    const grid = document.getElementById('patchesCardsGrid');
+    const patches = appData.items.filter(i => i.category === 'patch');
+    grid.innerHTML = '';
+    patches.forEach(item => {
+      grid.appendChild(createSimpleCard(item));
+    });
+  }
+
+  function renderReleasesCards() {
+    const grid = document.getElementById('releasesCardsGrid');
+    const releases = appData.items.filter(i => i.category === 'release');
+    grid.innerHTML = '';
+    releases.forEach(item => {
+      grid.appendChild(createSimpleCard(item));
+    });
+  }
+
+  function createSimpleCard(item) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-img-container">
+        <img src="${item.img}" class="card-img" alt="${item.title}">
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">${item.title}</h3>
+        <p class="card-desc">${item.desc}</p>
+        <div class="card-footer">
+          <span><i class="fa-regular fa-clock"></i> ${item.time || getTimeAgo(item.timestamp)}</span>
+          <button class="read-more-btn" onclick="window.openModal('${item.dbKey || item.id}')">Read Details</button>
+        </div>
+      </div>
+    `;
+    return card;
+  }
+
+  function renderHubs() {
+    const list = document.getElementById('communityList');
+    list.innerHTML = '';
+    appData.hubs.forEach(hub => {
+      const li = document.createElement('li');
+      li.className = 'community-item';
+      li.innerHTML = `
+        <div class="community-info">
+          <div class="community-avatar">${hub.name.substring(0,2)}</div>
+          <div>
+            <div style="font-weight:700; font-size:0.9rem; color:#fff;">${hub.name}</div>
+            <div style="font-size:0.75rem; color:var(--text-main);">${hub.members}</div>
           </div>
-          <button class="join-btn ${hub.joined ? 'joined' : ''}" onclick="toggleHubJoin(${hub.id})">
-            ${hub.joined ? 'Joined' : 'Join'}
-          </button>
-        `;
-        list.appendChild(li);
+        </div>
+        <button class="join-btn ${hub.joined ? 'joined' : ''}" onclick="window.toggleHubJoin(${hub.id})">
+          ${hub.joined ? 'Joined' : 'Join'}
+        </button>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  window.filterCategory = (cat, btn) => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    if(cat === 'all') {
+      renderMainCards(appData.items);
+    } else {
+      const filtered = appData.items.filter(i => {
+        if (cat === 'event') {
+          return i.category === 'event' || i.category === 'tournament';
+        }
+        return i.category === cat;
       });
-    }
-
-    window.filterCategory = (cat, btn) => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      if(cat === 'all') {
-        renderMainCards(appData.items);
-      } else {
-        const filtered = appData.items.filter(i => {
-          if (cat === 'event') {
-            return i.category === 'event' || i.category === 'tournament';
-          }
-          return i.category === cat;
-        });
-        renderMainCards(filtered);
-      }
-    };
-
-    window.handleSearch = () => {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = appData.items.filter(i => 
-        i.title.toLowerCase().includes(query) || i.desc.toLowerCase().includes(query)
-      );
       renderMainCards(filtered);
-    };
-
-    window.toggleLike = (key) => {
-      const item = appData.items.find(i => (i.dbKey === key || i.id === key));
-      if(item) {
-        item.isLiked = !item.isLiked;
-        item.likes = (item.likes || 0) + (item.isLiked ? 1 : -1);
-        
-        if (item.dbKey) {
-          update(ref(db, `news/${item.dbKey}`), { likes: item.likes });
-        } else {
-          renderMainCards(appData.items);
-        }
-      }
-    };
-
-    window.toggleHubJoin = (id) => {
-      const hub = appData.hubs.find(h => h.id === id);
-      if(hub) {
-        hub.joined = !hub.joined;
-        renderHubs();
-      }
-    };
-
-    window.openModal = (key) => {
-      const item = appData.items.find(i => (i.dbKey === key || i.id === key));
-      if(!item) return;
-
-      appData.activeItemForModal = item;
-      document.getElementById('modalTitle').innerText = item.title;
-      document.getElementById('modalImage').src = item.img;
-      document.getElementById('modalBody').innerText = item.fullDetails || item.desc;
-      
-      const badgeClass = item.category === 'patch' ? 'badge-patch' : (item.category === 'release' ? 'badge-release' : 'badge-event');
-      document.getElementById('modalBadge').innerHTML = `<span class="card-badge ${badgeClass}">${(item.category || 'NEWS').toUpperCase()}</span>`;
-
-      renderModalComments();
-      document.getElementById('detailModal').style.display = 'flex';
-    };
-
-    window.closeModal = () => {
-      document.getElementById('detailModal').style.display = 'none';
-      appData.activeItemForModal = null;
-    };
-
-    function renderModalComments() {
-      const container = document.getElementById('modalComments');
-      container.innerHTML = '';
-      const comments = appData.activeItemForModal ? (appData.activeItemForModal.comments || []) : [];
-      if(comments.length === 0) {
-        container.innerHTML = '<p style="font-size:0.85rem; color:#888;">No comments yet. Be the first!</p>';
-        return;
-      }
-      comments.forEach(c => {
-        const div = document.createElement('div');
-        div.style.background = '#11141a';
-        div.style.padding = '8px 12px';
-        div.style.borderRadius = '6px';
-        div.style.marginBottom = '6px';
-        div.style.fontSize = '0.85rem';
-        div.innerText = c;
-        container.appendChild(div);
-      });
     }
+  };
 
-    window.addModalComment = () => {
-      const input = document.getElementById('modalCommentInput');
-      const val = input.value.trim();
-      if(val !== '' && appData.activeItemForModal) {
-        const name = currentUser ? (currentUser.displayName || 'Gamer') : 'Guest';
-        if (!appData.activeItemForModal.comments) appData.activeItemForModal.comments = [];
-        
-        const newComment = `${name}: ${val}`;
-        appData.activeItemForModal.comments.push(newComment);
-        
-        if (appData.activeItemForModal.dbKey) {
-          update(ref(db, `news/${appData.activeItemForModal.dbKey}`), { 
-            comments: appData.activeItemForModal.comments 
-          });
-        }
-        
-        input.value = '';
-        renderModalComments();
+  window.handleSearch = () => {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = appData.items.filter(i => 
+      i.title.toLowerCase().includes(query) || i.desc.toLowerCase().includes(query)
+    );
+    renderMainCards(filtered);
+  };
+
+  window.toggleLike = (key) => {
+    const item = appData.items.find(i => (i.dbKey === key || i.id === key));
+    if(item) {
+      item.isLiked = !item.isLiked;
+      item.likes = (item.likes || 0) + (item.isLiked ? 1 : -1);
+      
+      if (item.dbKey) {
+        update(ref(db, `news/${item.dbKey}`), { likes: item.likes });
+      } else {
         renderMainCards(appData.items);
       }
-    };
+    }
+  };
 
-    window.openAuthModal = () => document.getElementById('authModal').style.display = 'flex';
-    window.closeAuthModal = () => {
-      document.getElementById('detailModal').style.display = 'none';
-      document.getElementById('authModal').style.display = 'none';
-      document.getElementById('authErrorMsg').style.display = 'none';
-    };
-    window.toggleAuthMode = () => {
-      isSignUp = !isSignUp;
-      document.getElementById('usernameGroup').style.display = isSignUp ? 'block' : 'none';
-      document.getElementById('authModalTitle').innerText = isSignUp ? 'Create Gamer Account' : 'Gamer Account Access';
-      document.getElementById('authSubmitBtn').innerText = isSignUp ? 'Sign Up' : 'Login';
-      document.getElementById('authToggleText').innerText = isSignUp ? 'Already have an account? Login' : 'Need an account? Sign Up';
-      document.getElementById('authErrorMsg').style.display = 'none';
-    };
-  </script>
+  window.toggleHubJoin = (id) => {
+    const hub = appData.hubs.find(h => h.id === id);
+    if(hub) {
+      hub.joined = !hub.joined;
+      renderHubs();
+    }
+  };
+
+  window.openModal = (key) => {
+    const item = appData.items.find(i => (i.dbKey === key || i.id === key));
+    if(!item) return;
+
+    appData.activeItemForModal = item;
+    document.getElementById('modalTitle').innerText = item.title;
+    document.getElementById('modalImage').src = item.img;
+    document.getElementById('modalBody').innerText = item.fullDetails || item.desc;
+    
+    const badgeClass = item.category === 'patch' ? 'badge-patch' : (item.category === 'release' ? 'badge-release' : 'badge-event');
+    document.getElementById('modalBadge').innerHTML = `<span class="card-badge ${badgeClass}">${(item.category || 'NEWS').toUpperCase()}</span>`;
+
+    renderModalComments();
+    document.getElementById('detailModal').style.display = 'flex';
+  };
+
+  window.closeModal = () => {
+    document.getElementById('detailModal').style.display = 'none';
+    appData.activeItemForModal = null;
+  };
+
+  function renderModalComments() {
+    const container = document.getElementById('modalComments');
+    container.innerHTML = '';
+    const comments = appData.activeItemForModal ? (appData.activeItemForModal.comments || []) : [];
+    if(comments.length === 0) {
+      container.innerHTML = '<p style="font-size:0.85rem; color:#888;">No comments yet. Be the first!</p>';
+      return;
+    }
+    comments.forEach(c => {
+      const div = document.createElement('div');
+      div.style.background = '#11141a';
+      div.style.padding = '8px 12px';
+      div.style.borderRadius = '6px';
+      div.style.marginBottom = '6px';
+      div.style.fontSize = '0.85rem';
+      div.innerText = c;
+      container.appendChild(div);
+    });
+  }
+
+  window.addModalComment = () => {
+    const input = document.getElementById('modalCommentInput');
+    const val = input.value.trim();
+    if(val !== '' && appData.activeItemForModal) {
+      const name = currentUser ? (currentUser.displayName || 'Gamer') : 'Guest';
+      if (!appData.activeItemForModal.comments) appData.activeItemForModal.comments = [];
+      
+      const newComment = `${name}: ${val}`;
+      appData.activeItemForModal.comments.push(newComment);
+      
+      if (appData.activeItemForModal.dbKey) {
+        update(ref(db, `news/${appData.activeItemForModal.dbKey}`), { 
+          comments: appData.activeItemForModal.comments 
+        });
+      }
+      
+      input.value = '';
+      renderModalComments();
+      renderMainCards(appData.items);
+    }
+  };
+
+  window.openAuthModal = () => document.getElementById('authModal').style.display = 'flex';
+  window.closeAuthModal = () => {
+    document.getElementById('authModal').style.display = 'none';
+    document.getElementById('authErrorMsg').style.display = 'none';
+  };
+  window.toggleAuthMode = () => {
+    isSignUp = !isSignUp;
+    document.getElementById('usernameGroup').style.display = isSignUp ? 'block' : 'none';
+    document.getElementById('authModalTitle').innerText = isSignUp ? 'Create Gamer Account' : 'Gamer Account Access';
+    document.getElementById('authSubmitBtn').innerText = isSignUp ? 'Sign Up' : 'Login';
+    document.getElementById('authToggleText').innerText = isSignUp ? 'Already have an account? Login' : 'Need an account? Sign Up';
+    document.getElementById('authErrorMsg').style.display = 'none';
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderMainCards(appData.items);
+    renderPatchesCards();
+    renderReleasesCards();
+    renderHubs();
+  });
+</script>
 </body>
 </html>
